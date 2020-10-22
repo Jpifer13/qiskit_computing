@@ -7,15 +7,16 @@ from application.services.first_circuit import create_first_circuit
 
 class Runner():
 
-    def __init__(self, log_level=logging.DEBUG, console_log_level=None):
+    def __init__(self, log_level=logging.INFO, console_log_level=None, application="Runner"):
         self.log_level = log_level
         self.console_log_level = console_log_level
+        self.application = application
 
         try:
             self.logging_utils = self._init_logging()
             self.logging_utils.logApplicationStart()
-        except:
-            print("Unable to instantiate logging.")
+        except Exception as err:
+            print(f"Unable to instantiate logging.\n{err}")
 
     def _init_logging(self):
         timestamp = time.strftime("%Y%m%d%H%M%S")
@@ -26,4 +27,18 @@ class Runner():
         return loggingUtils
     
     def run(self):
-        circuit = create_first_circuit()
+        try:
+            logger = logging.getLogger()
+            logging.info("Starting...")
+            logging.info("Running...")
+            print("Running...")
+
+            logging.info("Running function: create_first_circuit.")
+            circuit = create_first_circuit()
+            logging.info(f"Here is the return circuit:\n{circuit}")
+        except Exception as err:
+            logger.exception(err)
+        finally:
+            self.logging_utils.logApplicationFinish()
+            logging.shutdown()
+            print("Shutdown")

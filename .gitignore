@@ -80,4 +80,4 @@ venv/
 *env.ps1
 
 # Logs
-*logs/*
+logs/*.log

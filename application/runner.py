@@ -3,6 +3,8 @@ import time
 
 from application.utils.LoggingUtils import LoggingUtils
 from application.services.first_circuit import create_first_circuit
+from application.services import health_check
+from qiskit import IBMQ
 
 
 class Runner():
@@ -26,6 +28,14 @@ class Runner():
         
         return loggingUtils
     
+
+    def _get_first_circuit(self):
+        logging.getLogger()
+
+        logging.info("Running function: create_first_circuit.")
+        circuit = create_first_circuit()
+        logging.info(f"Here is the return circuit:\n{circuit}")
+
     def run(self):
         try:
             logger = logging.getLogger()
@@ -33,9 +43,9 @@ class Runner():
             logging.info("Running...")
             print("Running...")
 
-            logging.info("Running function: create_first_circuit.")
-            circuit = create_first_circuit()
-            logging.info(f"Here is the return circuit:\n{circuit}")
+            # self._get_first_circuit()
+            provider = IBMQ.get_provider("ibm-q")
+            health_check.check_queues(provider, logger=logger)
         except Exception as err:
             logger.exception(err)
         finally:

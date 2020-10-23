@@ -2,8 +2,9 @@ import logging
 import time
 
 from application.utils.LoggingUtils import LoggingUtils
-from application.services.first_circuit import create_first_circuit
-from application.services import health_check
+from application.services.circuits import create_first_circuit
+from application.utils import utils
+from application.services.job import Job
 from qiskit import IBMQ
 
 
@@ -45,7 +46,15 @@ class Runner():
 
             # self._get_first_circuit()
             provider = IBMQ.get_provider("ibm-q")
-            health_check.check_queues(provider, logger=logger)
+            logging.info("Getting shortest queue...")
+            backend_name, qubits = utils.check_and_retrieve_shortest_queue(provider, logger=logger)
+            logging.info(f'Shortest queue is {backend_name} with {qubits} jobs in the queue.')
+
+            # Create job
+            job = Job(circuit=create_first_circuit(), server=backend_name, shots=500, provider=provider)
+            job.run_job()
+            job.monitor_job()
+            job.plot_job()
         except Exception as err:
             logger.exception(err)
         finally:

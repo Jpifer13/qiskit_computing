@@ -1,5 +1,8 @@
 This project is to test qiskit quantum computers and is used to learn how to use said computers as well as learn about quantum mechanics/computers.
 
+First thing first is to create a free account on IBM Quantum Systems. Instructions to do so can be found here: [link]https://qiskit.org/documentation/install.html
+Once you have created an account you can install Qiskit and start creating circuits!
+
 To run application a virtual environment needs to be made using whatever environment tool you use. I prefer Pythons default tool.
 
 From the command line run: python -m venv venv

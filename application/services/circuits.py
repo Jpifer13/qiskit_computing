@@ -22,8 +22,8 @@ def create_first_circuit() -> q.QuantumCircuit:
     # ascii_image = circuit.draw()  # This will give an ascii representation of the circuit
     # print(ascii_image)
 
-    circuit.draw(output='mpl')  # This makes the output using matplotlib
-    plt.show()
+    # circuit.draw(output='mpl')  # This makes the output using matplotlib
+    # plt.show()
 
     return circuit
 

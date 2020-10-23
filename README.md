@@ -21,4 +21,4 @@ Last thing you need to do before running this is add your client_token that you 
 
 
 Now that all dependencies are installed on your virtual environment and your token is set to an environment variable you can run this application by using the command:
-```python ./app.py on windows or python3 ./app.py on linux.```
+```python ./app.py``` on windows or ```python3 ./app.py``` on linux.

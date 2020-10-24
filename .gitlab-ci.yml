@@ -4,6 +4,7 @@ variables:
     testPath: 'tests/'
     codeCoverageThreshhold: 80
     coveragePath: './src/controllers/'
+    tag: 'Builder'
 
 stages:
     - init
@@ -13,6 +14,7 @@ stages:
 
 Initialize:
     stage: init
+    tags: $tag
     script:
         - python3 -m pip install --upgrade pip
         # - apt-get update -qy
@@ -22,6 +24,7 @@ Initialize:
 
 Run-Tests:
     stage: test
+    tags: $tag
     script:
         - pip3 install pytest
         - pip3 install pytest-cov
@@ -29,24 +32,24 @@ Run-Tests:
         # - pytest $testPath --junitxml=junit/test-results.xml --cov=$coveragePath --cov-report=xml --cov-report=html --maxfail=1
         - pytest $testPath --maxfail=1
 
-pages:
-    script:
-    - apk --no-cache add py-pip python-dev git make
-    - pip install sphinx guzzle_sphinx_theme recommonmark markdown m2r
-    - git clone https://github.com/Blendify/sphinx-bootstrap-directives.git
-    - cd sphinx-bootstrap-directives
-    - python setup.py build
-    - python setup.py install
-    - cd docs
-    - rm -Rf source
-    - cd ../..
-    - make html
-    - mv _build/html/ public/
-    artifacts:
-      paths:
-      - public
-    only:
-    - master
+# pages:
+#     script:
+#     - apk --no-cache add py-pip python-dev git make
+#     - pip install sphinx guzzle_sphinx_theme recommonmark markdown m2r
+#     - git clone https://github.com/Blendify/sphinx-bootstrap-directives.git
+#     - cd sphinx-bootstrap-directives
+#     - python setup.py build
+#     - python setup.py install
+#     - cd docs
+#     - rm -Rf source
+#     - cd ../..
+#     - make html
+#     - mv _build/html/ public/
+#     artifacts:
+#       paths:
+#       - public
+#     only:
+#     - master
   
 #   compile_pdf:
 #     image: aergus/latex

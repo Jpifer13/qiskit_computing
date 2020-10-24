@@ -3,7 +3,7 @@ image: python:3.7
 variables:
     testPath: 'tests/'
     codeCoverageThreshhold: 80
-    coveragePath: './src/controllers/'
+    coveragePath: './application/'
 
 stages:
     - init
@@ -14,7 +14,7 @@ stages:
 Initialize:
     stage: init
     tags:
-        - Builder
+        - comeon
     script:
         - python3 -m pip install --upgrade pip
         # - apt-get update -qy
@@ -25,7 +25,7 @@ Initialize:
 Run-Tests:
     stage: test
     tags:
-        - Builder
+        - comeon
     script:
         - pip3 install pytest
         - pip3 install pytest-cov

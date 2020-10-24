@@ -4,7 +4,7 @@ variables:
     testPath: 'tests/'
     codeCoverageThreshhold: 80
     coveragePath: './src/controllers/'
-    tag: 'Builder'
+    tag: ['Builder']
 
 stages:
     - init

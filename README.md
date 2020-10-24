@@ -3,10 +3,10 @@ This project is to test qiskit quantum computers and is used to learn how to use
 First thing first is to create a free account on IBM Quantum Systems. Instructions to do so can be found here: [link]https://qiskit.org/documentation/install.html
 Once you have created an account you can install Qiskit and start creating circuits!
 
-To run application a virtual environment needs to be made using whatever environment tool you use. I prefer Pythons default tool.
-
 Now that you have an accound with IBMQ you need to create a directory locally where you want to clone this repo into. Once a directory is made use git clone to
 pull this repo.
+
+To run application a virtual environment needs to be made using whatever environment tool you use. I prefer Pythons default virtual environment tool.
 
 From the command line run: python -m venv venv
 

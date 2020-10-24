@@ -5,6 +5,9 @@ Once you have created an account you can install Qiskit and start creating circu
 
 To run application a virtual environment needs to be made using whatever environment tool you use. I prefer Pythons default tool.
 
+Now that you have an accound with IBMQ you need to create a directory locally where you want to clone this repo into. Once a directory is made use git clone to
+pull this repo.
+
 From the command line run: python -m venv venv
 
 After the environment is created you need to run it.

@@ -2,7 +2,7 @@ import logging
 import time
 
 from application.utils.LoggingUtils import LoggingUtils
-from application.services.circuits import create_first_circuit
+from application.services.circuits import create_first_circuit, create_second_ciruit
 from application.utils import utils
 from application.services.job import Job
 from qiskit import IBMQ
@@ -29,7 +29,6 @@ class Runner():
         
         return loggingUtils
     
-
     def _get_first_circuit(self):
         logging.getLogger()
 
@@ -52,9 +51,18 @@ class Runner():
 
             # Create job
             job = Job(circuit=create_first_circuit(), server=backend_name, shots=500, provider=provider)
-            job.run_job()
-            job.monitor_job()
-            job.plot_job()
+            logging.info(f'Here is the first jobs circuit:\n{job.plot_ascii_job_circuit()}')
+            # job.run_job()
+            # job.monitor_job()
+            # job.plot_finished_job()
+
+            # Second circuit job
+            second_job = Job(circuit=create_second_ciruit(), server=backend_name, shots=500, provider=provider)
+            logging.info(f'Here is the second jobs circuit:\n{second_job.plot_ascii_job_circuit()}')
+            second_job.run_job()
+            second_job.monitor_job()
+            second_job.plot_finished_job()
+            
         except Exception as err:
             logger.exception(err)
         finally:

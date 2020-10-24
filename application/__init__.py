@@ -2,7 +2,7 @@ import os
 from qiskit import IBMQ
 from .runner import Runner
 
-def create_app():
+def create_app() -> Runner:
     account = None
     try:
         account = IBMQ.load_account()

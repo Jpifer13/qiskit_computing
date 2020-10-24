@@ -29,14 +29,10 @@ class Job():
         else:
             return None
     
-<<<<<<< HEAD
     def plot_ascii_job_circuit(self):
         return self.circuit.draw()
 
     def plot_finished_job(self):
-=======
-    def plot_job(self):
->>>>>>> develop
         style.use('dark_background')
 
         counts = self.result.get_counts(self.circuit)

@@ -4,7 +4,6 @@ variables:
     testPath: 'tests/'
     codeCoverageThreshhold: 80
     coveragePath: './src/controllers/'
-    tag: ['Builder']
 
 stages:
     - init
@@ -14,7 +13,6 @@ stages:
 
 Initialize:
     stage: init
-    tags: $tag
     script:
         - python3 -m pip install --upgrade pip
         # - apt-get update -qy
@@ -24,7 +22,6 @@ Initialize:
 
 Run-Tests:
     stage: test
-    tags: $tag
     script:
         - pip3 install pytest
         - pip3 install pytest-cov

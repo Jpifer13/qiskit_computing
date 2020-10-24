@@ -13,6 +13,8 @@ stages:
 
 Initialize:
     stage: init
+    tags:
+        - Builder
     script:
         - python3 -m pip install --upgrade pip
         # - apt-get update -qy
@@ -22,6 +24,8 @@ Initialize:
 
 Run-Tests:
     stage: test
+    tags:
+        - Builder
     script:
         - pip3 install pytest
         - pip3 install pytest-cov

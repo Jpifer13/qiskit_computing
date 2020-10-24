@@ -6,5 +6,8 @@ App = create_app()
 
 if __name__ == '__main__':
     print(f"Qiskit versions: {qiskit.__qiskit_version__}")
-    App.create_first_example_circuit()
+    # App.create_first_example_circuit()
+    # App.run()
+    circuit = create_second_ciruit()
+    App.assign_circuit(circuit)
     App.run()

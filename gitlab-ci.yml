@@ -1,0 +1,64 @@
+image: python:3.7
+
+variables:
+    testPath: 'tests/'
+    codeCoverageThreshhold: 80
+    coveragePath: './src/controllers/'
+
+stages:
+    - init
+    - test
+    # - build
+    # - deploy
+
+Initialize:
+    stage: init
+    script:
+        - python3 -m pip install --upgrade pip
+        # - apt-get update -qy
+        # - apt-get install -y python-dev python-pip
+        # - pip3 install -r requirements.txt
+
+
+Run-Tests:
+    stage: test
+    script:
+        - pip3 install pytest
+        - pip3 install pytest-cov
+        - pip3 install -r requirements.txt
+        # - pytest $testPath --junitxml=junit/test-results.xml --cov=$coveragePath --cov-report=xml --cov-report=html --maxfail=1
+        - pytest $testPath --maxfail=1
+
+pages:
+    script:
+    - apk --no-cache add py-pip python-dev git make
+    - pip install sphinx guzzle_sphinx_theme recommonmark markdown m2r
+    - git clone https://github.com/Blendify/sphinx-bootstrap-directives.git
+    - cd sphinx-bootstrap-directives
+    - python setup.py build
+    - python setup.py install
+    - cd docs
+    - rm -Rf source
+    - cd ../..
+    - make html
+    - mv _build/html/ public/
+    artifacts:
+      paths:
+      - public
+    only:
+    - master
+  
+#   compile_pdf:
+#     image: aergus/latex
+#     script:
+#       - wget -L https://bootstrap.pypa.io/get-pip.py
+#       - python get-pip.py
+#       - pip install sphinx guzzle_sphinx_theme recommonmark markdown m2r
+#       - make latex
+#       - make latexpdf
+#       - mv _build/latex/FabAcademy2018.pdf FabAcademy2018.pdf
+#     artifacts:
+#       paths:
+#       - FabAcademy2018.pdf
+#     only:
+#       - master

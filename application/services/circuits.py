@@ -28,3 +28,17 @@ def create_first_circuit() -> q.QuantumCircuit:
     return circuit
 
 
+def create_second_ciruit() -> q.QuantumCircuit:
+    # The difference between this circuit and the other is that qubit zero is put into superposition versus
+    # in the first circuit we are just moving it in the 1 position
+    circuit = q.QuantumCircuit(2, 2)
+
+    # This time use a hadamar? gate and what this does is puts the qubit in 
+    # superposition
+    circuit.h(0) # 0, 0
+    # now 1, 0
+    circuit.cx(0, 1)
+    # 1, 1
+    circuit.measure([0, 1], [0, 1])
+
+    return circuit

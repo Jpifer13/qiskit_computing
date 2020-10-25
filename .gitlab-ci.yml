@@ -7,7 +7,7 @@ variables:
 
 stages:
     - init
-    - test
+    # - test
     # - build
     # - deploy
 
@@ -16,22 +16,23 @@ Initialize:
     tags:
         - comeon
     script:
-        - python3 -m pip install --upgrade pip
+        - echo "Hello world!"
+        # - python3 -m pip install --upgrade pip
         # - apt-get update -qy
         # - apt-get install -y python-dev python-pip
         # - pip3 install -r requirements.txt
 
 
-Run-Tests:
-    stage: test
-    tags:
-        - comeon
-    script:
-        - pip3 install pytest
-        - pip3 install pytest-cov
-        - pip3 install -r requirements.txt
-        # - pytest $testPath --junitxml=junit/test-results.xml --cov=$coveragePath --cov-report=xml --cov-report=html --maxfail=1
-        - pytest $testPath --maxfail=1
+# Run-Tests:
+#     stage: test
+#     tags:
+#         - comeon
+#     script:
+#         - pip3 install pytest
+#         - pip3 install pytest-cov
+#         - pip3 install -r requirements.txt
+#         # - pytest $testPath --junitxml=junit/test-results.xml --cov=$coveragePath --cov-report=xml --cov-report=html --maxfail=1
+#         - pytest $testPath --maxfail=1
 
 # pages:
 #     script:

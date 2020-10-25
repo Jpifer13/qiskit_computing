@@ -14,7 +14,7 @@ stages:
 Initialize:
     stage: init
     tags:
-        - initialize
+        - init
     script:
         - echo "Hello world!"
         # - python3 -m pip install --upgrade pip

@@ -2,6 +2,7 @@
 AuditorLog.py
 
 This class creates the Auditor Log for a BFX 2.0 application.
+Props to SW for writing awesome logging classes
 
 Key changes
 
